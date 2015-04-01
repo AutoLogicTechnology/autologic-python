@@ -1,0 +1,11 @@
+---
+
+- name: Fetch Python (pip)
+  get_url:
+    url: "https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py"
+    dest: "/tmp"
+
+- name: Install Python (pip)
+  command: "/usr/local/bin/python{{autologic_python_version[:3]}} /tmp/get-pip.py"
+  args:
+    creates: "{{autologic_python_pip_creates}}"

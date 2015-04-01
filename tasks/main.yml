@@ -2,14 +2,20 @@
 
 - include: prechecks.yml
 - include: dependencies.yml
-  when: not have_python
+  when:
+    - autologic_python_manage_deps
+    - not have_setuptools|bool or not have_python|bool
 
-- include: fetch.yml
-  when: not have_python
+- include: python.yml
+  when:
+    - not have_python
 
-- include: build.yml
-  when: not have_python
+- include: pip.yml
+  when:
+    - autologic_python_manage_pip
+    - not have_pip
 
 - include: cleanup.yml
-  when: not have_python
+  when:
+    - not have_python|bool
 

@@ -1,20 +1,27 @@
 ---
 
-- name: Pre-fetch Check
+- name: Pre-fetch Check (python)
   stat:
     path: "/tmp/Python-{{autologic_python_version}}.tgz"
     get_md5: false 
-  register: have_python
+  register: fetch_python
 
-- name: Fetch Python
+- name: Fetch (python)
   get_url:
     url: "https://www.python.org/ftp/python/{{autologic_python_version}}/Python-{{autologic_python_version}}.tgz"
     dest: "/tmp"
-  when: not have_python.stat.exists
+  when: not fetch_python.stat.exists
 
-- name: Extract Python
+- name: Extract (python)
   unarchive:
     copy: false 
     src: "/tmp/Python-{{autologic_python_version}}.tgz"
     dest: "/tmp/"
     creates: "/tmp/Python-{{autologic_python_version}}"
+
+
+- name: Build and Install (python)
+  shell: "./configure --prefix=/usr/local && make install"
+  args:
+    creates: "/usr/local/bin/python{{autologic_python_version[:3]}}"
+    chdir: "/tmp/Python-{{autologic_python_version}}"

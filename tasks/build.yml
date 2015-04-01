@@ -1,7 +1,0 @@
----
-
-- name: Build and Install Python
-  shell: "./configure --prefix=/usr/local && make install"
-  args:
-    creates: "/usr/local/bin/python{{autologic_python_version[:3]}}"
-    chdir: "/tmp/Python-{{autologic_python_version}}"

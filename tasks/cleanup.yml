@@ -1,9 +1,31 @@
 ---
 
-- name: Clean up after ourselves
+- name: Clean up Python install (cleanup)
   file:
     path: "{{item}}"
     state: "absent"
   with_items:
     - "/tmp/Python-{{autologic_python_version}}.tgz"
     - "/tmp/Python-{{autologic_python_version}}"
+  when:
+    - not have_python|bool
+
+- name: Clean up Setuptools install (cleanup)
+  file:
+    path: "{{item}}"
+    state: "absent"
+  with_items:
+    - "/tmp/ez_setup.py"
+  when:
+    - not have_setuptools|bool
+
+- name: Clean up Pip install (cleanup)
+  file:
+    path: "{{item}}"
+    state: "absent"
+  with_items:
+    - "/tmp/get-pip.py"
+    - "/tmp/pip_build_root"
+  when:
+    - autologic_python_manage_pip
+    - not have_pip|bool

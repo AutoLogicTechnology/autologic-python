@@ -1,13 +1,23 @@
 ---
 
-- name: Install Python build dependencies
+- name: Install Python build dependencies (dependencies)
   yum:
     name: "{{item}}"
     state: "present"
-    update_cache: true 
+    # update_cache: true 
   with_items:
     - "@Development Tools"
     - "zlib-devel"
     - "openssl-devel"
     - "sqlite-devel"
     - "bzip2-devel"
+
+- name: Fetch setuptools from the Internet Of Things (dependencies)
+  get_url:
+    url: "https://bootstrap.pypa.io/ez_setup.py"
+    dest: "/tmp"
+
+- name: Run setuptools setup script (dependencies)
+  command: "/usr/local/bin/python{{autologic_python_version[:3]}} /tmp/ez_setup.py --version {{autologic_python_setuptools_version}}"
+  args:
+    creates: "{{autologic_python_setuptools_creates}}"

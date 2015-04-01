@@ -2,3 +2,10 @@
 autologic_python_version: "2.7.9"
 autologic_python_manage_deps: true 
 autologic_python_manage_path: true
+
+autologic_python_manage_pip: true
+autologic_python_pip_creates: "/usr/local/bin/pip"
+
+autologic_python_setuptools_script: "https://bootstrap.pypa.io/ez_setup.py"
+autologic_python_setuptools_version: "14.3.1" 
+autologic_python_setuptools_creates: "/usr/local/lib/python{{autologic_python_version[:3]}}/site-packages/setuptools-{{autologic_python_setuptools_version}}-py{{autologic_python_version[:3]}}.egg"

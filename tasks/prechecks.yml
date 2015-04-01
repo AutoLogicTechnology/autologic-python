@@ -1,9 +1,22 @@
 ---
 
-- name: Check if Python is already installed
+- name: Check if Python is already installed (prechecks)
   stat:
     path: "/usr/local/bin/python{{autologic_python_version[:3]}}"
   register: python_stat
 
-- set_fact:
-    have_python: python_stat.stat.exists
+- name: Check if Setuptools is already installed (prechecks)
+  stat:
+    path: "{{autologic_python_setuptools_creates}}"
+  register: setuptools_stat
+
+- name: Check if Pip is already installed (prechecks)
+  stat:
+    path: "{{autologic_python_pip_creates}}"
+  register: pip_stat
+
+- name: Set precheck Facts (prechecks)
+  set_fact:
+    have_python: "{{python_stat.stat.exists}}"
+    have_setuptools: "{{setuptools_stat.stat.exists}}"
+    have_pip: "{{pip_stat.stat.exists}}"
