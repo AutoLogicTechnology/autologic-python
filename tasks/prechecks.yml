@@ -1,0 +1,9 @@
+---
+
+- name: Check if Python is already installed
+  stat:
+    path: "/usr/local/bin/python{{autologic_python_version[:3]}}"
+  register: python_stat
+
+- set_fact:
+    have_python: python_stat.stat.exists

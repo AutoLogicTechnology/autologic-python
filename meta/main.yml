@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Michael Crilly 
+  description: Manage Python installations from source 
+  company: Autologic Technology Ltd 
+  license: MIT
+  min_ansible_version: 1.9
+  dependencies: []
+  

@@ -1,0 +1,20 @@
+---
+
+- name: Pre-fetch Check
+  stat:
+    path: "/tmp/Python-{{autologic_python_version}}.tgz"
+    get_md5: false 
+  register: have_python
+
+- name: Fetch Python
+  get_url:
+    url: "https://www.python.org/ftp/python/{{autologic_python_version}}/Python-{{autologic_python_version}}.tgz"
+    dest: "/tmp"
+  when: not have_python.stat.exists
+
+- name: Extract Python
+  unarchive:
+    copy: false 
+    src: "/tmp/Python-{{autologic_python_version}}.tgz"
+    dest: "/tmp/"
+    creates: "/tmp/Python-{{autologic_python_version}}"

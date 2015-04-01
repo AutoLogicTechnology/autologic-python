@@ -1,0 +1,13 @@
+---
+
+- name: Install Python build dependencies
+  yum:
+    name: "{{item}}"
+    state: "present"
+    update_cache: true 
+  with_items:
+    - "@Development Tools"
+    - "zlib-devel"
+    - "openssl-devel"
+    - "sqlite-devel"
+    - "bzip2-devel"

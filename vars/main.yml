@@ -1,0 +1,4 @@
+---
+autologic_python_version: "2.7.9"
+autologic_python_manage_deps: true 
+autologic_python_manage_path: true

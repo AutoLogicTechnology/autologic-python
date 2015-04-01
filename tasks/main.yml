@@ -1,0 +1,15 @@
+---
+
+- include: prechecks.yml
+- include: dependencies.yml
+  when: not have_python
+
+- include: fetch.yml
+  when: not have_python
+
+- include: build.yml
+  when: not have_python
+
+- include: cleanup.yml
+  when: not have_python
+
