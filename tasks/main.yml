@@ -8,12 +8,12 @@
 
 - include: python.yml
   when:
-    - not have_python
+    - not have_python|bool
 
 - include: pip.yml
   when:
     - autologic_python_manage_pip
-    - not have_pip
+    - not have_pip|bool
 
 - include: cleanup.yml
   when:
