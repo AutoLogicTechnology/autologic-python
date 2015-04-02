@@ -1,0 +1,16 @@
+---
+
+- name: Install VirtualEnv (OS pip)
+  pip:
+    name: "virtualenv"
+    state: "present"
+  when:
+    - not autologic_python_manage_pip
+
+- name: Install VirtualEnv (autologic-python pip)
+  pip:
+    name: "virtualenv"
+    state: "present"
+    executable: "{{autologic_python_pip_creates}}"
+  when:
+    - autologic_python_manage_pip

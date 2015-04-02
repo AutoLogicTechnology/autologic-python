@@ -4,7 +4,10 @@ autologic_python_manage_deps: true
 autologic_python_manage_path: true
 
 autologic_python_manage_pip: true
-autologic_python_pip_creates: "/usr/local/bin/pip"
+autologic_python_pip_creates: "/usr/local/bin/pip{{autologic_python_version[:3]}}"
+
+autologic_python_manage_virtualenv: true 
+autologic_python_virtualenv_creates: "/usr/local/bin/virtualenv"
 
 autologic_python_setuptools_script: "https://bootstrap.pypa.io/ez_setup.py"
 autologic_python_setuptools_version: "14.3.1" 

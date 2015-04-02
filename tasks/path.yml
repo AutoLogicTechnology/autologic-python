@@ -1,0 +1,9 @@
+---
+
+- name: Include PATH variable profile script (python)
+  copy:
+    src: "autologic-python.sh"
+    dest: "/etc/profile.d/"
+    mode: 0600
+    owner: "root"
+    group: "root"

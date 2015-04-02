@@ -3,20 +3,26 @@
 - name: Check if Python is already installed (prechecks)
   stat:
     path: "/usr/local/bin/python{{autologic_python_version[:3]}}"
-  register: python_stat
+  register: python
 
 - name: Check if Setuptools is already installed (prechecks)
   stat:
     path: "{{autologic_python_setuptools_creates}}"
-  register: setuptools_stat
+  register: setuptools
 
 - name: Check if Pip is already installed (prechecks)
   stat:
     path: "{{autologic_python_pip_creates}}"
-  register: pip_stat
+  register: pip
+
+- name: Check if VirtualEnv is already installed (prechecks)
+  stat:
+    path: "{{autologic_python_virtualenv_creates}}"
+  register: virtualenv
 
 - name: Set precheck Facts (prechecks)
   set_fact:
-    have_python: "{{python_stat.stat.exists}}"
-    have_setuptools: "{{setuptools_stat.stat.exists}}"
-    have_pip: "{{pip_stat.stat.exists}}"
+    have_python: "{{python.stat.exists}}"
+    have_setuptools: "{{setuptools.stat.exists}}"
+    have_pip: "{{pip.stat.exists}}"
+    have_virtualenv: "{{virtualenv.stat.exists}}"

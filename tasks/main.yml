@@ -10,10 +10,19 @@
   when:
     - not have_python|bool
 
+- include: path.yml
+  when:
+    - autologic_python_manage_path
+
 - include: pip.yml
   when:
     - autologic_python_manage_pip
     - not have_pip|bool
+
+- include: virtualenv.yml
+  when:
+    - autologic_python_manage_virtualenv
+    - not have_virtualenv|bool 
 
 - include: cleanup.yml
   when:

@@ -19,7 +19,6 @@
     dest: "/tmp/"
     creates: "/tmp/Python-{{autologic_python_version}}"
 
-
 - name: Build and Install (python)
   shell: "./configure --prefix=/usr/local && make install"
   args:
