@@ -5,5 +5,5 @@ galaxy_info:
   company: Autologic Technology Ltd 
   license: MIT
   min_ansible_version: 1.9
-  dependencies: []
+dependencies: []
   

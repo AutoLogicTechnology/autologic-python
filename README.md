@@ -6,7 +6,7 @@ Defaults to Python 2.7.9, but this can be configured.
 
 ## Version
 
-3.0.0
+3.0.1
 
 ## Variables
 
